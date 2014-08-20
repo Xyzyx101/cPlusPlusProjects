@@ -1,0 +1,8 @@
+init random number generator
+create array of words
+randomly swap the letters around
+display welcome message
+do
+    get guess from user
+while not win or lose
+display win message

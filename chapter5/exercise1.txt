@@ -1,0 +1,6 @@
+This will not work because after the first parameter has a default value all parameter need default values.
+int askNumber(int low = 1, int high);
+
+
+This will work
+int askNumber(int low = 1, int high = 10);

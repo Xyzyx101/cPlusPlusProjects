@@ -1,0 +1,8 @@
+vector<int>::iterator iter;
+for (iter = score.begin(); iter != scores.end(); ++iter)
+{
+    /* The dereference operator was missing.  Without it you would increment 
+     *   the pointer and not the value of each element
+     */
+    *iter++;
+}

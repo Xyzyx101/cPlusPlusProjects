@@ -1,0 +1,9 @@
+init variable
+do {
+	calculate range of possibilities
+	guess
+	ask player if the guess is to low or high
+	assign new range maxima
+	increment tries
+} while guess is incorrect
+display win message

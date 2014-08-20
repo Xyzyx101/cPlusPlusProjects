@@ -1,0 +1,9 @@
+while(x) will be false because x is set to 0.  
+The program will skip to the end right away.
+
+int x = 0;
+while(x)
+{
+    ++x;
+    cout << x << endl;
+}

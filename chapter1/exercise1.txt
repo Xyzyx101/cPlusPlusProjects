@@ -1,0 +1,12 @@
+good
+
+gravity
+velocity
+inventory
+
+
+bad
+
+g
+vcty
+in
