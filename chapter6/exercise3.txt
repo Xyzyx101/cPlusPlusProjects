@@ -1,0 +1,7 @@
+int& plusThree(int number)
+{
+    int threeMore = number + 3;
+    return threeMore;
+}
+
+the function returns a integer and it should return a reference to an integer
