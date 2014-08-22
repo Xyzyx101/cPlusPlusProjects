@@ -9,26 +9,8 @@
 
 using namespace std;
 
-char getGuess(string& used)
-{
-	char guess;
-	cout << "\n\nEnter your guess: ";
-	cin >> guess;
-	guess = toupper(guess); //make uppercase since secret in uppercase
-	while( used.find(guess) != string::npos )
-	{
-		cout << "\nYou've already guessed " << guess << endl;
-		cout << "Enter your guess: ";
-		cin >> guess;
-		guess = toupper(guess);
-	}
-	return guess;
-}
-
-bool hasLetter(const string word, char& letter)
-{
-	return word.find(letter) != string::npos;
-}
+char getGuess(string& used);
+bool hasLetter(const string word, char& letter);
 
 int main()
 {
@@ -94,3 +76,23 @@ int main()
 	return 0;
 }
 
+char getGuess(string& used)
+{
+	char guess;
+	cout << "\n\nEnter your guess: ";
+	cin >> guess;
+	guess = toupper(guess); //make uppercase since secret in uppercase
+	while( used.find(guess) != string::npos )
+	{
+		cout << "\nYou've already guessed " << guess << endl;
+		cout << "Enter your guess: ";
+		cin >> guess;
+		guess = toupper(guess);
+	}
+	return guess;
+}
+
+bool hasLetter(const string word, char& letter)
+{
+	return word.find(letter) != string::npos;
+}

@@ -1,4 +1,4 @@
-// Word Jumpble
+// Word Jumble
 // Player must guess a jumbled word
 
 #include<iostream>
