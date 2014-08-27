@@ -7,7 +7,7 @@ using namespace std;
 
 string askText(const string& prompt);
 int askNumber(const string& prompt);
-void tellStory(const string& name, const string& noun, const int& number, const string& bodyPart, const string& verb);
+void tellStory(const string* name, const string* noun, const int* number, const string* bodyPart, const string* verb);
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
 	string bodyPart = askText("Please enter a body part: ");
 	string verb = askText("Please enter a verb: ");
 
-	tellStory(name, noun, number, bodyPart, verb);
+	tellStory(&name, &noun, &number, &bodyPart, &verb);
 
 	return 0;
 }
@@ -41,29 +41,29 @@ int askNumber(const string& prompt)
 	return num;
 }
 
-void tellStory(const string& name, const string& noun, const int& number, const string& bodyPart, const string& verb)
+void tellStory(const string* name, const string* noun, const int* number, const string* bodyPart, const string* verb)
 {
 	cout << "\nHere's your story:\n";
 	cout << "the famous explorer ";
-	cout << name;
+	cout << *name;
 	cout << " had nearly given up a life-long quest to find\n";
 	cout << "The Lost City of ";
-	cout << noun;
+	cout << *noun;
 	cout << " when one day, the ";
-	cout << noun;
+	cout << *noun;
 	cout << " found the explorer.\n";
 	cout << "Surrounded by ";
-	cout << number;
-	cout << " " << noun;
+	cout << *number;
+	cout << " " << *noun;
 	cout << ", a tear came to ";
-	cout << name << "'s ";
-	cout << bodyPart << ".\n";
+	cout << *name << "'s ";
+	cout << *bodyPart << ".\n";
 	cout << "After all this time, the quest was finally over.  ";
 	cout << "And then, the ";
-	cout << noun << "\n";
+	cout << *noun << "\n";
 	cout << " promptly devoured ";
-	cout << name << ". ";
+	cout << *name << ". ";
 	cout << "The moral of the story? Be careful what you ";
-	cout << verb;
+	cout << *verb;
 	cout << " for.\n";
 }
