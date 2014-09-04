@@ -6,13 +6,14 @@
 
 using namespace std;
 
-void Initialize(const string* container[], int capacity);
-bool isFull(const string* const container[], int capacity);
-bool isEmpty(const string* const container[], int capacity);
-bool Contains(const string* const pItem, const string* container[], int capacity);
-void Display(const string* const container[], int capacity);
-void Add(const string* const pItem, const string* container[], int capacity);
-void Remove(const string* const pItem, const string* container[], int capacity);
+void Initialize( const string* container[], int capacity );
+bool isFull( const string* const container[], int capacity );
+bool isEmpty( const string* const container[], int capacity );
+bool Contains( const string* const pItem, const string* container[], int capacity );
+void Display( const string* const container[], int capacity );
+void Add( const string* const pItem, const string* container[], int capacity );
+void Remove( const string* const pItem, const string* container[], int capacity );
+const string* Get( const string* const pItem, const string items[], int capacity );
 
 int main()
 {
@@ -20,7 +21,7 @@ int main()
 
 	//items
 	const int NUM_ITEMS = 5;
-	const string items[NUM_ITEMS] = { 
+	const string items[NUM_ITEMS] = {
 		"sword",
 		"axe",
 		"shield",
@@ -30,10 +31,11 @@ int main()
 	//inventory
 	const int INVENTORY_CAPACITY = 3;
 	const string* inventory[INVENTORY_CAPACITY];
-	Initialize(inventory, INVENTORY_CAPACITY);
+	Initialize( inventory, INVENTORY_CAPACITY );
 
 	int choice;
-	int itemNumber;
+	string userInput;
+	const string* item;
 
 	do
 	{
@@ -54,7 +56,7 @@ int main()
 			break;
 		case 1:
 			cout << "Inventory:" << endl;
-			Display(inventory, INVENTORY_CAPACITY);
+			Display( inventory, INVENTORY_CAPACITY );
 			break;
 		case 2:
 			for( int i = 0; i < NUM_ITEMS; ++i )
@@ -64,12 +66,12 @@ int main()
 
 			do
 			{
-				cout << "Enter the number of the item to add: ";
-				cin >> itemNumber;
-			} while( itemNumber < 0 || itemNumber >= NUM_ITEMS );
+				cout << "Enter the item to add: ";
+				cin >> userInput;
+				item = Get( &userInput, items, INVENTORY_CAPACITY );
+			} while( item == NULL );
 
-			//pass address of element items[itemNumber]
-			Add(&items[itemNumber], inventory, INVENTORY_CAPACITY);
+			Add( item, inventory, INVENTORY_CAPACITY );
 			break;
 		case 3:
 			for( int i = 0; i < NUM_ITEMS; ++i )
@@ -79,19 +81,19 @@ int main()
 
 			do
 			{
-				cout << "Enter the number of the item to remove: ";
-				cin >> itemNumber;
-			} while( itemNumber < 0 || itemNumber >= NUM_ITEMS );
+				cout << "Enter the item to remove: ";
+				cin >> userInput;
+				item = Get( &userInput, items, NUM_ITEMS );
+			} while( item == NULL );
 
-			//pass address of element items[itemNumber]
-			Remove(&items[itemNumber], inventory, INVENTORY_CAPACITY);
+			Remove( item, inventory, INVENTORY_CAPACITY );
 			break;
 		}
 	} while( choice != 0 );
 	return 0;
 }
 
-void Initialize(const string* container[], int capacity)
+void Initialize( const string* container[], int capacity )
 {
 	for( int i = 0; i < capacity; ++i )
 	{
@@ -99,7 +101,7 @@ void Initialize(const string* container[], int capacity)
 	}
 }
 
-bool isFull(const string* const container[], int capacity)
+bool isFull( const string* const container[], int capacity )
 {
 	bool full = true;
 	int i = 0;
@@ -116,7 +118,7 @@ bool isFull(const string* const container[], int capacity)
 	return full;
 }
 
-bool isEmpty(const string* const container[], int capacity)
+bool isEmpty( const string* const container[], int capacity )
 {
 	bool empty = true;
 	int i = 0;
@@ -134,7 +136,7 @@ bool isEmpty(const string* const container[], int capacity)
 	return empty;
 }
 
-bool Contains(const string* const pItem, const string* container[], int capacity)
+bool Contains( const string* const pItem, const string* container[], int capacity )
 {
 	bool has = false;
 	int i = 0;
@@ -149,9 +151,9 @@ bool Contains(const string* const pItem, const string* container[], int capacity
 	return has;
 }
 
-void Display(const string* const container[], int capacity)
+void Display( const string* const container[], int capacity )
 {
-	if( isEmpty(container, capacity) )
+	if( isEmpty( container, capacity ) )
 	{
 		cout << "<Empty>" << endl;
 		return;
@@ -165,19 +167,19 @@ void Display(const string* const container[], int capacity)
 	}
 }
 
-void Add(const string* const pItem, const string* container[], int capacity)
+void Add( const string* const pItem, const string* container[], int capacity )
 {
 	if( pItem == NULL )
 	{
 		return;
 	}
-	if( Contains(pItem, container, capacity) )
+	if( Contains( pItem, container, capacity ) )
 	{
 		cout << "Item already present. Can't add.";
 		cout << endl;
 		return;
 	}
-	if( isFull(container, capacity) )
+	if( isFull( container, capacity ) )
 	{
 		cout << "Container full.  Can't add." << endl;
 		return;
@@ -196,7 +198,7 @@ void Add(const string* const pItem, const string* container[], int capacity)
 	}
 }
 
-void Remove(const string* const pItem, const string* container[], int capacity)
+void Remove( const string* const pItem, const string* container[], int capacity )
 {
 	if( pItem == NULL )
 	{
@@ -205,7 +207,8 @@ void Remove(const string* const pItem, const string* container[], int capacity)
 
 	bool found = false;
 	int i = 0;
-	while( !found && i < capacity){
+	while( !found && i < capacity )
+	{
 		if( container[i] == pItem )
 		{
 			container[i] = NULL;
@@ -217,4 +220,24 @@ void Remove(const string* const pItem, const string* container[], int capacity)
 	{
 		cout << "Item not found. Can't remove." << endl;
 	}
+}
+
+const string* Get( const string* const pItem, const string items[], int capacity )
+{
+	if( pItem == NULL )
+	{
+		return NULL;
+	}
+
+	int i = 0;
+	while( i < capacity )
+	{
+		if( *pItem == items[i] )
+		{
+			return &items[i];
+		}
+		++i;
+	}
+	cout << "Item not found in the list.  Please type it again." << endl;
+	return NULL;
 }

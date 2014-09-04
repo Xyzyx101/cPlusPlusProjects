@@ -1,0 +1,1 @@
+m_Hunger is not initialized so it will only print a useless number
