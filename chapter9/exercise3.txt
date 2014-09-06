@@ -1,0 +1,1 @@
+It causes a memory leak because the pointer to the memory address holding 500 is lost when the new int(1000) is created.
