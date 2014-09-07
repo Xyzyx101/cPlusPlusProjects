@@ -26,8 +26,7 @@ private:
 
 class Critter
 {
-	//friend void CritterFarm::Debug() const;
-	friend void CritterFarm::Debug( ) const;
+	friend void CritterFarm::Debug() const;
 
 public:
 	Critter( int hunger = 0, int boredom = 0 );
