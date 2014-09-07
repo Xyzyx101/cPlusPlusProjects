@@ -3,8 +3,6 @@ using namespace std;
 
 int main()
 {
-	const int MAX_NUMBER = 100;
-	//random number between 1 and 100
 	cout << "\tWelcome to Nim" << endl << endl;
 	cout << "The game starts with 13 sticks.  Each player removes between 1 and 4 sticks until they are gone. ";
 	cout << "The player whole removes the last stick wins." << endl << endl;
