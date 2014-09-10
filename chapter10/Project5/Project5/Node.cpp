@@ -3,7 +3,7 @@
 
 using namespace std;
 
-Node::Node(const int& data, Node*& nextNode) :
+Node::Node( const int& data, Node* nextNode) :
 	m_Data(data),
 	m_pNext(nextNode)
 {

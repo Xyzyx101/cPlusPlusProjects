@@ -26,7 +26,7 @@ void Stack::Display() const
 {
 	if( m_pHead == NULL )
 	{
-		cout << "<Empty>";
+		cout << "<Empty>" << endl;
 	}
 	Node* pNode = m_pHead;
 	while( pNode != NULL )
@@ -83,4 +83,16 @@ void Stack::Clear()
 		Pop();
 		pNode = m_pHead;
 	}
+}
+
+vector<int> Stack::GetStackAsVector()
+{
+	vector<int> tempVector;
+	Node* pNode = m_pHead;
+	while( pNode != NULL )
+	{
+		tempVector.push_back(pNode->m_Data);
+		pNode = pNode->m_pNext;
+	}
+	return tempVector;
 }

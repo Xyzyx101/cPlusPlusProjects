@@ -10,7 +10,7 @@ class Node
 	friend class Stack;
 
 public:
-	Node( const int& data, Node*& nextNode);
+	Node( const int& data, Node* nextNode);
 	~Node();
 
 private:

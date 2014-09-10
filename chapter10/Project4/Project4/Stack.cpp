@@ -26,7 +26,7 @@ void Stack::Display() const
 {
 	if( m_pHead == NULL )
 	{
-		cout << "<Empty>";
+		cout << "<Empty>" << endl;
 	}
 	Node* pNode = m_pHead;
 	while( pNode != NULL )
