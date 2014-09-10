@@ -11,7 +11,6 @@ class List
 public:
 	List();
 	~List();
-	List( const List& other );
 	bool Contains(const string& data) const;
 	int Count() const;
 	void Display() const;

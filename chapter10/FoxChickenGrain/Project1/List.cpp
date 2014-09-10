@@ -16,18 +16,6 @@ List::~List()
 	Clear();
 }
 
-List::List( const List& other ) :
-    m_pHead(NULL),
-    m_pTail(NULL)
-{
-	Node* pNode = other.m_pHead;
-	while( pNode != NULL )
-	{
-		this->Add( pNode->m_Data );
-		pNode = pNode->m_pNext;
-	}
-}
-
 bool List::Contains(const string& data) const
 {
 	bool found = false;

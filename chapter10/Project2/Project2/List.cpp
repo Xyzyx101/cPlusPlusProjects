@@ -28,6 +28,17 @@ List::List( const List& other ) :
 	}
 }
 
+void List::operator=(const List& other)
+{
+	Node* pNode = other.m_pHead;
+	while( pNode != NULL )
+	{
+		this->Add( pNode->m_Data );
+		pNode = pNode->m_pNext;
+	}
+	return;
+}
+
 bool List::Contains(const string& data) const
 {
 	bool found = false;
