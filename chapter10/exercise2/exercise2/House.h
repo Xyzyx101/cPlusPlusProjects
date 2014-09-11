@@ -1,3 +1,4 @@
+#pragma once
 #include"GenericPlayer.h"
 
 class House : public GenericPlayer

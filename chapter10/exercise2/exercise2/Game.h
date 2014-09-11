@@ -1,3 +1,4 @@
+#pragma once
 #include<vector>
 #include"Deck.h"
 #include"House.h"

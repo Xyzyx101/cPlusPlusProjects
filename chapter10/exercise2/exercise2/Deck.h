@@ -1,3 +1,4 @@
+#pragma once
 #include"Hand.h"
 #include"GenericPlayer.h"
 

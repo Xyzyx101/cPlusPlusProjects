@@ -40,7 +40,9 @@ void Deck::Deal( Hand& aHand )
 	}
 	else
 	{
-		cout << "Out of cards. Unable to deal.";
+		Populate();
+		Shuffle();
+		Deal(aHand);
 	}
 }
 
