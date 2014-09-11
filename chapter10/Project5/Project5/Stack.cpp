@@ -13,6 +13,29 @@ Stack::~Stack()
 	Clear();
 }
 
+Stack& Stack::operator=(const Stack& other)
+{
+	if( this == &other )
+	{
+		return *this;
+	}
+	this->Clear();
+	
+	Stack tempStack;
+	Node* pOtherNode = other.m_pHead;
+	while( pOtherNode != NULL )
+	{
+		tempStack.Push( pOtherNode->m_Data );
+		pOtherNode = pOtherNode->m_pNext;
+	}
+	Node* pTempNode = tempStack.m_pHead;
+	while( pTempNode != NULL )
+	{
+		this->Push( pTempNode->m_Data );
+		pTempNode = pTempNode->m_pNext;
+	}
+	return *this;
+}
 
 bool Stack::IsEmpty()
 {
@@ -83,16 +106,4 @@ void Stack::Clear()
 		Pop();
 		pNode = m_pHead;
 	}
-}
-
-vector<int> Stack::GetStackAsVector()
-{
-	vector<int> tempVector;
-	Node* pNode = m_pHead;
-	while( pNode != NULL )
-	{
-		tempVector.push_back(pNode->m_Data);
-		pNode = pNode->m_pNext;
-	}
-	return tempVector;
 }

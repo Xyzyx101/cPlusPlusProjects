@@ -28,15 +28,23 @@ List::List( const List& other ) :
 	}
 }
 
-void List::operator=(const List& other)
+List& List::operator=(const List& other)
 {
+	//check for self assignment
+	// this check is not a short circuit - it is required for correctness
+	// if you delete the original nodes on the stack then there will be dangling pointer ofter self assignment
+	if( this == &other )
+	{
+		return *this;
+	}
+	
 	Node* pNode = other.m_pHead;
 	while( pNode != NULL )
 	{
 		this->Add( pNode->m_Data );
 		pNode = pNode->m_pNext;
 	}
-	return;
+	return *this;
 }
 
 bool List::Contains(const string& data) const

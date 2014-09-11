@@ -21,8 +21,7 @@ int main()
 
 	// testing overloaded = operator to mkae a deep copy of the list
 	list2 = list1;
-	
-	
+		
 	list2.Remove( "chicken" );
 	cout << endl << "List2" << endl;
 	list2.Display( );

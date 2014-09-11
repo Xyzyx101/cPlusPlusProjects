@@ -34,18 +34,18 @@ void Game::Setup()
 	pegs[0]->Push(1);
 }
 
-void Game::Display()
+void Game::Display() const
 {
 	cout << "Peg 1:" << endl;
-	DisplayPeg(pegs[0]);
+	DisplayPeg(*pegs[0]);
 	cout << endl;
 
 	cout << "Peg 2:" << endl;
-	DisplayPeg(pegs[1]);
+	DisplayPeg(*pegs[1]);
 	cout << endl;
 
 	cout << "Peg 3:" << endl;
-	DisplayPeg(pegs[2]);
+	DisplayPeg(*pegs[2]);
 	cout << endl;
 }
 
@@ -91,18 +91,20 @@ void Game::TransferDisk(Stack* from, Stack* to)
 	from->Pop();
 }
 
-void Game::DisplayPeg(Stack* peg)
+void Game::DisplayPeg(const Stack& peg) const
 {
-	vector<int> vector = peg->GetStackAsVector();
+	Stack tempPeg;
+	tempPeg = peg;
 	for( int i = 4; i > 0; --i )
 	{
-		if( i > peg->Count() )
+		if( i > tempPeg.Count() )
 		{
 			cout << DISPLAY_STRINGS[0];
 		}
 		else
 		{
-			cout << DISPLAY_STRINGS[peg->Top()];
+			cout << DISPLAY_STRINGS[tempPeg.Top()];
+			tempPeg.Pop();
 		}
 		cout << endl;
 	}

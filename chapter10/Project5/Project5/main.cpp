@@ -2,6 +2,7 @@
 
 #include<iostream>
 #include"Game.h"
+#include"Stack.h"
 
 using namespace std;
 

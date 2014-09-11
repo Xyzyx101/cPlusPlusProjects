@@ -8,6 +8,7 @@ class Stack
 public:
 	Stack();
 	~Stack();
+	Stack& operator=(const Stack& other);
 	bool IsEmpty();
 	void Display() const;
 	int Count() const;
@@ -15,7 +16,6 @@ public:
 	void Push( int data );
 	void Pop();
 	void Clear();
-	vector<int> GetStackAsVector();
 private:
 	static const int ERROR = -1;
 	Node* m_pHead;

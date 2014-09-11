@@ -10,7 +10,7 @@ public:
 	~Game();
 	void DisplayIntro();
 	void Setup();
-	void Display();
+	void Display() const;
 	bool GameOver();
 	void NextTurn();
 private:
@@ -19,6 +19,6 @@ private:
 
 	Stack* pegs[NUM_OF_PEGS];
 	void TransferDisk(Stack* from, Stack* to);
-	void DisplayPeg(Stack* peg);
+	void Game::DisplayPeg( const Stack& peg ) const;
 };
 
