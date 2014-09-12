@@ -11,3 +11,9 @@ void Boss::MegaAttack()
 {
 	std::cout << "Enemy does mega attack for " << m_Damage * m_DamageMultiplier << std:: endl;
 }
+
+void Boss::Taunt()
+{
+	Enemy::Taunt();
+	std::cout << "  And laugh heartily.";
+}

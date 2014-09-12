@@ -10,3 +10,8 @@ void Enemy::Attack()
 {
 	std::cout << "Enemy attacks for " << m_Damage << std::endl;
 }
+
+void Enemy::Taunt()
+{
+	std::cout << "I will defeat you.";
+}
