@@ -1,14 +1,14 @@
 #include "PlayerHuman.h"
 #include<iostream>
 
-PlayerHuman::PlayerHuman(string name) :
+PlayerHuman::PlayerHuman(const string& name) :
 Player(name)
 {}
 
 PlayerHuman::~PlayerHuman()
 {}
 
-int PlayerHuman::MakeMove( const int sticksRemaining ) const
+int PlayerHuman::MakeMove(const int sticksRemaining) const
 {
 	bool validValue = false;
 	int sticksToRemove;

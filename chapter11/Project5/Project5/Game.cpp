@@ -5,11 +5,11 @@
 
 using namespace std;
 
-Game::Game(  )
+Game::Game()
 {
 	player1 = nullptr;
 	player2 = nullptr;
-	pile = Pile( );
+	pile = Pile();
 
 	//it starts false because it is flipped at the begining of each turn and I want 1 to go first
 	playerOnesTurn = false;
@@ -33,67 +33,58 @@ void Game::InitGame()
 	cout << "Is " << playerTwoName << " (1)Computer controlled or (2)Human Controlled : ";
 	cin >> input;
 	playerTwoIsAI = input == 1;
-	
+
 	if( playerOneIsAI )
 	{
-		player1 = new PlayerComputer( playerOneName );
+		player1 = new PlayerComputer(playerOneName);
 	}
 	else
 	{
-		player1 = new PlayerHuman( playerOneName );
+		player1 = new PlayerHuman(playerOneName);
 	}
 	if( playerTwoIsAI )
 	{
-		player2 = new PlayerComputer( playerTwoName );
+		player2 = new PlayerComputer(playerTwoName);
 	}
 	else
 	{
-		player2 = new PlayerHuman( playerTwoName );
+		player2 = new PlayerHuman(playerTwoName);
 	}
 }
 
 Game::~Game()
 {
-	/* I didn't want to put player input in the constructor so there 
-	the if statements are required in case InitGame is never run.
-	*/
-	if( player1 )
-	{
-		delete player1;
-	}
-	if( player2 )
-	{
-		delete player2;
-	}
+	delete player1;
+	delete player2;
 }
 
-void Game::NextTurn( )
+void Game::NextTurn()
 {
 	playerOnesTurn = !playerOnesTurn;
 
-	string currentPlayerName = playerOnesTurn ? player1->GetName( ) : player2->GetName( );
-	cout << "There are " << pile.GetSticks( ) << " sticks left." << endl;
+	string currentPlayerName = playerOnesTurn ? player1->GetName() : player2->GetName();
 	cout << endl;
+	cout << "There are " << pile.GetSticks() << " sticks left." << endl;
 	cout << "It is " << currentPlayerName << "'s turn." << endl;
 	cout << "How many sticks do you want to remove? : ";
 
 	int sticksToRemove;
 	if( playerOnesTurn )
 	{
-		sticksToRemove = player1->MakeMove( pile.GetSticks() );
+		sticksToRemove = player1->MakeMove(pile.GetSticks());
 	}
 	else
 	{
-		sticksToRemove = player2->MakeMove( pile.GetSticks( ) );
+		sticksToRemove = player2->MakeMove(pile.GetSticks());
 	}
-	pile.RemoveSticks( sticksToRemove );
+	pile.RemoveSticks(sticksToRemove);
 }
 
-string Game::GameOver( )
+string Game::GameOver()
 {
-	if( pile.GetSticks( ) == 0 )
+	if( pile.GetSticks() == 0 )
 	{
-		return playerOnesTurn ? player1->GetName( ) : player2->GetName( );
+		return playerOnesTurn ? player1->GetName() : player2->GetName();
 	}
 	return "";
 }

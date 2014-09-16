@@ -3,8 +3,8 @@
 class PlayerComputer : public Player
 {
 public:
-	PlayerComputer(string name);
+	PlayerComputer(const string& name);
 	virtual ~PlayerComputer();
-	int MakeMove( const int sticksRemaining ) const;
+	int MakeMove(const int sticksRemaining) const;
 };
 

@@ -1,10 +1,11 @@
 #pragma once
 #include "Player.h"
-class PlayerHuman :	public Player
+
+class PlayerHuman : public Player
 {
 public:
-	PlayerHuman(string name);
+	PlayerHuman(const string& name);
 	virtual ~PlayerHuman();
-	int MakeMove( const int sticksRemaining ) const;
+	int MakeMove(const int sticksRemaining) const;
 };
 
