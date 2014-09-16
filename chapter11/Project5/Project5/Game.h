@@ -8,9 +8,10 @@ class Game
 {
 public:
 	Game();
-	void NextTurn( );
-	string GameOver( ); // returns winners name or "" if the game is still going
-	void CreatePlayers();
+	~Game();
+	void InitGame();
+	void NextTurn();
+	string GameOver(); // returns winners name or "" if the game is still going
 private:
 	bool playerOnesTurn;
 	Player* player1;

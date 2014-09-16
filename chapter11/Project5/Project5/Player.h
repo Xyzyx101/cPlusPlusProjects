@@ -9,7 +9,7 @@ public:
 	Player(string name);
 	virtual ~Player();
 	const string& GetName( ) const;
-	virtual void GetChoice() const = 0;
-private:
+	virtual int MakeMove( const int sticksRemaining ) const = 0;
+protected:
 	string m_name;
 };
