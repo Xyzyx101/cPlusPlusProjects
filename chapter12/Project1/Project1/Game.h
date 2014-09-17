@@ -11,6 +11,7 @@ public:
 	Game();
 	void DisplayInstruction();
 	void Play();
+	void DisplayAllQuestions();
 private:
 	Tree m_Tree;
 };

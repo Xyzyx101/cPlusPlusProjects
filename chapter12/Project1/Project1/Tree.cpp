@@ -123,3 +123,25 @@ char Tree::AskYesNo( const string& question )
 	} while( response != YES && response != NO );
 	return response;
 }
+
+void Tree::DisplayQuestions()
+{
+	DisplayQuestions( m_pRoot );
+}
+
+void Tree::DisplayQuestions(const Node * const pNode) const
+{
+	if( pNode == nullptr )
+	{
+		return;
+	}
+	cout << pNode->m_Question << endl;
+	if( pNode->m_pYes != nullptr )
+	{
+		DisplayQuestions( pNode->m_pYes );
+	}
+	if( pNode->m_pNo != nullptr )
+	{
+		DisplayQuestions( pNode->m_pNo );
+	}
+}

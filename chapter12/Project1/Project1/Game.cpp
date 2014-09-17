@@ -41,3 +41,8 @@ void Game::Play()
 		m_Tree.AddPerson();
 	}
 }
+
+void Game::DisplayAllQuestions()
+{
+	m_Tree.DisplayQuestions();
+}

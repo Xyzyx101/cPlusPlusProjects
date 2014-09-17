@@ -16,6 +16,8 @@ public:
 	void NextQuestion( char answer );
 	void AddPerson();
 	char AskYesNo( const string& question = "" );
+	void DisplayQuestions();
+	void DisplayQuestions( const Node * const pNode ) const;
 	static const char YES = 'y';
 	static const char NO = 'n';
 private:
