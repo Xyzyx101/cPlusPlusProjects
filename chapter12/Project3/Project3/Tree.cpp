@@ -6,7 +6,24 @@
 
 using namespace std;
 
-Tree::Tree()
+Tree::Tree() :
+m_pRoot(nullptr),
+m_pCurrent(nullptr),
+m_pCurrentParent(nullptr)
+{
+}
+
+Tree::~Tree()
+{
+	Delete( m_pRoot );
+}
+
+void Tree::Init()
+{
+	CreateDefaultTree();
+}
+
+void Tree::CreateDefaultTree()
 {
 	Node* pNodeGandi = new Node( "Are you thinking of Gandhi?", NULL, NULL );
 	Node* pNodeSanta = new Node( "Are you thinking of Santa Claus?", NULL, NULL );
@@ -14,12 +31,6 @@ Tree::Tree()
 	m_pRoot = pNodeQuestion;
 	m_pCurrent = m_pRoot;
 	m_pCurrentParent = NULL;
-}
-
-
-Tree::~Tree()
-{
-	Delete( m_pRoot );
 }
 
 void Tree::Reset()
@@ -124,29 +135,36 @@ char Tree::AskYesNo( const string& question )
 	return response;
 }
 
-void Tree::DisplayQuestions() const
+void Tree::SaveTree() const
 {
-	int count = 1;
-	DisplayQuestions( m_pRoot, count );
+	ostream& myStream = cout;
+	SaveTreeNode( m_pRoot , myStream);
 }
 
-void Tree::DisplayQuestions(const Node * const pNode, int& count) const
+void Tree::SaveTreeNode(const Node * const pNode, ostream& fOut) const
 {
 	if( pNode == nullptr )
 	{
 		return;
 	}
-	if( pNode->IsFinalQuestion() )
-	{
-		cout << count << " - " << pNode->m_Question << endl;
-		++count;
-	}
+	
+	fOut << pNode->m_Question << endl;
+	
 	if( pNode->m_pYes != nullptr )
 	{
-		DisplayQuestions( pNode->m_pYes , count);
+		SaveTreeNode( pNode->m_pYes, fOut );
+	}
+	else
+	{
+		fOut << NULL_NODE << endl;
 	}
 	if( pNode->m_pNo != nullptr )
 	{
-		DisplayQuestions( pNode->m_pNo , count);
+		SaveTreeNode( pNode->m_pNo, fOut );
 	}
+	else
+	{
+		fOut << NULL_NODE << endl;
+	}
+	
 }
