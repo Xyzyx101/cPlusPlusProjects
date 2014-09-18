@@ -1,6 +1,7 @@
 #include "Tree.h"
 
 #include<iostream>
+#include<fstream>
 #include<string>
 #include"Node.h"
 
@@ -20,7 +21,36 @@ Tree::~Tree()
 
 void Tree::Init()
 {
-	CreateDefaultTree();
+	ifstream fIn;
+	fIn.open("tree_data.txt", ifstream::in);
+	if( fIn.fail() )
+	{
+		cout << "Tree data not found.  Building default tree." << endl;
+		CreateDefaultTree();
+	}
+	else
+	{
+		cout << "Loading tree from disk." << endl;
+		LoadTree(m_pRoot, fIn);
+		fIn.close();
+	}
+}
+
+void Tree::LoadTree(Node*& pNode, istream& fIn)
+{
+	char question[256];
+	fIn.getline(question, 256);
+	if( question[0] == NULL_NODE )
+	{
+		pNode = nullptr;
+	}
+	else
+	{
+		pNode = new Node();
+		pNode->m_Question = question;
+		LoadTree(pNode->m_pYes, fIn);
+		LoadTree(pNode->m_pNo, fIn);
+	}
 }
 
 void Tree::CreateDefaultTree()
@@ -137,8 +167,9 @@ char Tree::AskYesNo( const string& question )
 
 void Tree::SaveTree() const
 {
-	ostream& myStream = cout;
-	SaveTreeNode( m_pRoot , myStream);
+	ofstream fOut;
+	fOut.open("tree_data.txt", ofstream::out);
+	SaveTreeNode( m_pRoot , fOut);
 }
 
 void Tree::SaveTreeNode(const Node * const pNode, ostream& fOut) const

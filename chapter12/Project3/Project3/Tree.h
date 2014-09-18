@@ -25,7 +25,7 @@ public:
 private:
 	void SaveTreeNode( const Node * const pNode, ostream& fOut ) const;
 	void CreateDefaultTree();
-	void LoadTree(istream& fIn);
+	void LoadTree(Node*& pNode, istream& fIn);
 	static const char NULL_NODE = '#';
 	Node* m_pRoot;
 	Node* m_pCurrent;

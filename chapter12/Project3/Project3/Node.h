@@ -8,6 +8,7 @@ class Node
 	friend class Tree;
 
 public:
+	Node();
 	Node( const string& question, Node* pYes, Node* pNo );
 	~Node();
 	bool IsFinalQuestion() const;
